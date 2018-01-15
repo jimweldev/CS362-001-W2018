@@ -56,7 +56,7 @@ public class CalDay {
 		int year = cal.get(cal.YEAR);
 	
 		setDay(day);
-		setMonth(month);
+		setMonth(month); //**bug introduced
 		setYear(year);
 	
 		setAppts(new LinkedList<Appt>());
@@ -111,8 +111,8 @@ public class CalDay {
 	
 	/** Sets appts */
 	private void setAppts(LinkedList<Appt> appts) {
-		if(appts!=null)
-				this.appts = appts;
+		/*if(appts!=null)
+				this.appts = ;*/
 		
 		if(appts!=null&&appts.size()==0)
 			this.appts = appts;
