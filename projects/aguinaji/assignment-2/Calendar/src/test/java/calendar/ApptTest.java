@@ -161,9 +161,9 @@ public class ApptTest {
 		assertEquals(0, appt.compareTo(appt));
 		assertEquals(-5, appt.compareTo(appt2));
 
-
-
 	}
+
+
 //add more unit tests as you needed
 	
 }

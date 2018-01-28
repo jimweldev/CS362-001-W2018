@@ -57,5 +57,17 @@ public class CalDayTest {
 
 	}
 
+	@Test
+	public void testIterator()	throws Throwable   {
+		GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
+		CalDay calday = new CalDay(inc50west);
+
+		calday.iterator();
+
+		CalDay calday2 = new CalDay();
+
+		assertEquals(null, calday2.iterator());
+	}
+
 	 //add more unit tests as you needed
 }

@@ -39,9 +39,9 @@ public class CalDay {
 	* Default constructor
 	* Constructs an invalid CalDay object
 	*/
-<span class="nc" id="L42">	public CalDay() {</span>
-<span class="nc" id="L43">		valid = false;</span>
-<span class="nc" id="L44">	}</span>
+<span class="fc" id="L42">	public CalDay() {</span>
+<span class="fc" id="L43">		valid = false;</span>
+<span class="fc" id="L44">	}</span>
 	
 	/**
 	* Constructor
@@ -101,11 +101,11 @@ public class CalDay {
 	 * time set placed at the beginning.
 	 */
 	public Iterator&lt;?&gt; iterator() {
-<span class="nc bnc" id="L104" title="All 2 branches missed.">	    if (isValid()) {</span>
-<span class="nc" id="L105">	        return getAppts().iterator();</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">	    if (isValid()) {</span>
+<span class="fc" id="L105">	        return getAppts().iterator();</span>
 	    }
 	    else {
-<span class="nc" id="L108">	        return null;</span>
+<span class="fc" id="L108">	        return null;</span>
 	    }
 	}
 	
