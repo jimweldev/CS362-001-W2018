@@ -46,6 +46,16 @@ public class CalDayTest {
 
 	 }
 
+	@Test
+	public void testToString()  throws Throwable  {
+		GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
+		CalDay calday = new CalDay(inc50west);
+
+		String inc50westS = calday.toString();
+
+		assertTrue(inc50westS.contains("7/27/2018"));
+
+	}
 
 	 //add more unit tests as you needed
 }

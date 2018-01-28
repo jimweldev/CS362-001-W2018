@@ -240,4 +240,9 @@ public class TimeTable {
 
 	        }
 
+		/* TESTING PURPOSES ONLY */
+		 public GregorianCalendar testGetNextApptOcc(Appt appt, GregorianCalendar day) {
+			 return getNextApptOccurrence(appt, day);
+		 }
+
 }

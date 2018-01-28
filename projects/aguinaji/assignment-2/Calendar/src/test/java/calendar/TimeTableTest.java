@@ -3,6 +3,7 @@ package calendar;
  *  This class provides a basic set of test cases for the
  *  TimeTable class.
  */
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
@@ -10,6 +11,7 @@ import java.util.List;
 
 
 import org.junit.Test;
+import sun.awt.image.ImageWatched;
 
 import static org.junit.Assert.*;
 
@@ -64,5 +66,92 @@ public class TimeTableTest {
          assertTrue(eventFromList.getAppts().contains(musicalEvent));
 
     }
+
+    @Test
+    public void testDeleteAppt() throws Throwable {
+        TimeTable timetable = new TimeTable();
+        LinkedList<Appt> appts = null;
+
+        Appt unityGames = new Appt(8, 1,27, 7,2018,
+                    "Unity Games", "Unity Sports Games");
+        Appt musicalEvent = new Appt(10, 1,27,7,2018,
+                    "Musical","Musical Event");
+
+        //timetable.deleteAppt(appts, unityGames);
+        assertEquals(null, timetable.deleteAppt(appts, unityGames));
+
+        appts = new LinkedList<Appt>();
+
+        appts.add(unityGames);
+        appts.add(musicalEvent);
+        appts.add(musicalEvent);
+        appts.add(musicalEvent);
+
+        LinkedList<Appt> temp = timetable.deleteAppt(appts, musicalEvent);
+        assertEquals(3, temp.size());
+        temp = timetable.deleteAppt(appts, musicalEvent);
+        assertEquals(2,temp.size());
+        //temp = timetable.deleteAppt(appts, musicalEvent);     // BUG: WILL NOT WORK WITH ONLY TWO IN LIST
+        //assertEquals(1,temp.size());
+    }
+
+    @Test
+    public void testPermute() throws Throwable {
+        LinkedList<Appt> appts = new LinkedList<Appt>();
+
+        Appt unityGames = new Appt(8, 1,27, 7,2018,
+                "Unity Games", "Unity Sports Games");
+        Appt musicalEvent = new Appt(10, 1,27,7,2018,
+                "Musical","Musical Event");
+        Appt specialService = new Appt(4,5,27,7,2018,
+                                        "Service", "Special Service");
+
+        appts.add(unityGames);
+        appts.add(musicalEvent);
+        appts.add(specialService);
+
+        TimeTable timetable = new TimeTable();
+        int[] order = new int[3];
+        order[0] = 1;
+        order[1] = 2;
+        order[2] = 0;
+
+        LinkedList<Appt> temp = timetable.permute(appts, order);
+
+        //assertEquals("Service", temp.get(0).getTitle()); // ****BUG: Incorrect Order
+
+	 }
+
+    @Test
+    public void testGetNextApptOccurrence() throws Throwable {
+        TimeTable timetable = new TimeTable();
+        GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
+        GregorianCalendar inc50west2 = new GregorianCalendar(2019, 7, 27);
+
+        Appt unityGames = new Appt(8, 1,27, 7,2018,
+                "Unity Games", "Unity Sports Games");
+
+        int[] recurDays = new int[]{27};
+
+        unityGames.setRecurrence(recurDays, unityGames.RECUR_BY_YEARLY, 2, unityGames.RECUR_NUMBER_FOREVER);
+
+        GregorianCalendar newOcc = timetable.testGetNextApptOcc(unityGames,inc50west);
+        assertTrue(inc50west2.equals(newOcc));
+
+        int[] recurDays2 = new int[]{};
+
+        unityGames.setRecurrence(recurDays2,unityGames.RECUR_BY_WEEKLY,2,unityGames.RECUR_NUMBER_FOREVER);
+
+        newOcc = timetable.testGetNextApptOcc(unityGames, inc50west);
+        assertFalse(inc50west2.equals(newOcc));
+
+        unityGames.setRecurrence(recurDays,unityGames.RECUR_BY_WEEKLY, 3, unityGames.RECUR_NUMBER_FOREVER);
+
+        newOcc = timetable.testGetNextApptOcc(unityGames, inc50west);
+        assertFalse(inc50west2.equals(newOcc));
+    }
+
+
+
 //add more unit tests as you needed
 }

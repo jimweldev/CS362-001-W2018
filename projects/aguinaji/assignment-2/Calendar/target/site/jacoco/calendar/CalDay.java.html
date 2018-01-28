@@ -167,23 +167,23 @@ public class CalDay {
 	 * debugging.
 	 */
 	public String toString() {
-<span class="nc" id="L170">	     StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L170">	     StringBuilder sb = new StringBuilder();</span>
 	
-<span class="nc bnc" id="L172" title="All 2 branches missed.">		if (isValid()) {</span>
-<span class="nc" id="L173">			String todayDate = (getMonth()) + &quot;/&quot; + getDay() + &quot;/&quot; + getYear();</span>
-<span class="nc" id="L174">			sb.append(&quot;\t --- &quot; + todayDate + &quot; --- \n&quot;);</span>
-<span class="nc" id="L175">			sb.append(&quot; --- -------- Appointments ------------ --- \n&quot;);</span>
-<span class="nc" id="L176">			Iterator&lt;Appt&gt; itr = this.appts.iterator();</span>
-<span class="nc bnc" id="L177" title="All 2 branches missed.">		    while(itr.hasNext()) {</span>
+<span class="pc bpc" id="L172" title="1 of 2 branches missed.">		if (isValid()) {</span>
+<span class="fc" id="L173">			String todayDate = (getMonth()) + &quot;/&quot; + getDay() + &quot;/&quot; + getYear();</span>
+<span class="fc" id="L174">			sb.append(&quot;\t --- &quot; + todayDate + &quot; --- \n&quot;);</span>
+<span class="fc" id="L175">			sb.append(&quot; --- -------- Appointments ------------ --- \n&quot;);</span>
+<span class="fc" id="L176">			Iterator&lt;Appt&gt; itr = this.appts.iterator();</span>
+<span class="pc bpc" id="L177" title="1 of 2 branches missed.">		    while(itr.hasNext()) {</span>
 <span class="nc" id="L178">		         Object element = itr.next();</span>
 		         
 <span class="nc" id="L180">		         sb.append(element + &quot; &quot;);</span>
 <span class="nc" id="L181">		      }</span>
 		  
 //			sb.append(this.appts);
-<span class="nc" id="L184">			sb.append(&quot;\n&quot;);</span>
+<span class="fc" id="L184">			sb.append(&quot;\n&quot;);</span>
 		}
-<span class="nc" id="L186">       	 return sb.toString();</span>
+<span class="fc" id="L186">       	 return sb.toString();</span>
 
 	}
 }
