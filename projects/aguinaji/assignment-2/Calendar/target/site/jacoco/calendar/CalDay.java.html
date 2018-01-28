@@ -71,14 +71,14 @@ public class CalDay {
 	 * appointments can be added. The appointment can also be added twice.
 	 */
 	public void addAppt(Appt appt) {
-<span class="pc bpc" id="L74" title="1 of 2 branches missed.">		if (appt.getValid()) {</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		if (appt.getValid()) {</span>
 <span class="fc bfc" id="L75" title="All 2 branches covered.">			for (int i = 0; i &lt; getAppts().size(); i++) {</span>
 				//Put the appointment in the correct order - finish this
 <span class="fc" id="L77">				if (((Appt)getAppts().get(i)).getStartHour() &gt;</span>
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">										appt.getStartHour()) {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">										appt.getStartHour()) {</span>
 					
-<span class="nc" id="L80">					getAppts().add(i, appt);</span>
-<span class="nc" id="L81">					return;</span>
+<span class="fc" id="L80">					getAppts().add(i, appt);</span>
+<span class="fc" id="L81">					return;</span>
 				}
 			}
 		    //The appointment hasn't been added yet, so add it
@@ -169,16 +169,16 @@ public class CalDay {
 	public String toString() {
 <span class="fc" id="L170">	     StringBuilder sb = new StringBuilder();</span>
 	
-<span class="pc bpc" id="L172" title="1 of 2 branches missed.">		if (isValid()) {</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">		if (isValid()) {</span>
 <span class="fc" id="L173">			String todayDate = (getMonth()) + &quot;/&quot; + getDay() + &quot;/&quot; + getYear();</span>
 <span class="fc" id="L174">			sb.append(&quot;\t --- &quot; + todayDate + &quot; --- \n&quot;);</span>
 <span class="fc" id="L175">			sb.append(&quot; --- -------- Appointments ------------ --- \n&quot;);</span>
 <span class="fc" id="L176">			Iterator&lt;Appt&gt; itr = this.appts.iterator();</span>
-<span class="pc bpc" id="L177" title="1 of 2 branches missed.">		    while(itr.hasNext()) {</span>
-<span class="nc" id="L178">		         Object element = itr.next();</span>
+<span class="fc bfc" id="L177" title="All 2 branches covered.">		    while(itr.hasNext()) {</span>
+<span class="fc" id="L178">		         Object element = itr.next();</span>
 		         
-<span class="nc" id="L180">		         sb.append(element + &quot; &quot;);</span>
-<span class="nc" id="L181">		      }</span>
+<span class="fc" id="L180">		         sb.append(element + &quot; &quot;);</span>
+<span class="fc" id="L181">		      }</span>
 		  
 //			sb.append(this.appts);
 <span class="fc" id="L184">			sb.append(&quot;\n&quot;);</span>
