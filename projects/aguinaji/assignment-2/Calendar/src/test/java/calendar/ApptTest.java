@@ -61,6 +61,10 @@ public class ApptTest {
 		 assertEquals("INC Celebration", appt.getTitle());
 		 assertEquals("Celebration for the INC in the West", appt.getDescription());
 
+		 // test start year
+		 appt.setStartYear(2019);
+		 assertFalse(appt.getValid());
+
 		 appt.setStartHour(24);
 		 assertFalse(appt.getValid());
 		 appt.setStartHour(-1);
@@ -75,6 +79,13 @@ public class ApptTest {
 		 // test start day
 		 appt.setStartDay(30);
 		 assertFalse(appt.getValid());
+
+		 Appt appt2 = new Appt(startHour, startMinute, 29, 2, startYear, title, description);
+		 assertFalse(appt2.getValid());
+
+		 appt2.setTitle(null);
+		 assertEquals("", appt2.getTitle());
+
 
 	 }
 
@@ -124,10 +135,13 @@ public class ApptTest {
 
 		 assertTrue(appt.toString().contains(expectedOut));
 
+		 expectedOut = "7/27/2018 at 1:0pm ,INC Celebration, Celebration for the INC in the West";
+		 appt.setStartHour(13);
+		 assertTrue(appt.toString().contains(expectedOut));
+
 		 // check if an invalid appt will work
 		 appt.setStartDay(0);
 		 assertEquals(null, appt.toString());
-
 	 }
 
 	@Test
