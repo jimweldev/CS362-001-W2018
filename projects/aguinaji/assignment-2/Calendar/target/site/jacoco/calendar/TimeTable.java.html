@@ -36,8 +36,8 @@ public class TimeTable {
 
 	        
 	        //Make sure that the first day is before the last day
-<span class="pc bpc" id="L39" title="1 of 2 branches missed.">	        if (!firstDay.before(lastDay)) {</span>
-<span class="nc" id="L40">	        	throw new DateOutOfRangeException (&quot;Second date specified is not  before the first date specified.&quot;);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">	        if (!firstDay.before(lastDay)) {</span>
+<span class="fc" id="L40">	        	throw new DateOutOfRangeException (&quot;Second date specified is not  before the first date specified.&quot;);</span>
 	        }
 	        
 	        
@@ -52,7 +52,7 @@ public class TimeTable {
 	        //Retrieve the appts - &lt;appt&gt; 
 <span class="fc bfc" id="L53" title="All 2 branches covered.">		for (int i = 0; i &lt; appts.size(); i++) {</span>
 <span class="fc" id="L54">			Appt appt=appts.get(i);</span>
-<span class="pc bpc" id="L55" title="1 of 2 branches missed.">			if(!appt.getValid()) continue;</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">			if(!appt.getValid()) continue;</span>
 			// Figure out which days the appointment occurs on
 <span class="fc" id="L57">			LinkedList&lt;GregorianCalendar&gt; apptOccursOnDays = getApptOccurences(</span>
 					appt, firstDay, lastDay);
@@ -91,8 +91,8 @@ public class TimeTable {
 <span class="fc" id="L91">	        LinkedList&lt;GregorianCalendar&gt; result = new LinkedList&lt;GregorianCalendar&gt;();</span>
 	        
 	        //Make sure that the firstDay is before the last day
-<span class="pc bpc" id="L94" title="1 of 2 branches missed.">	        if (!firstDay.before(lastDay)) {</span>
-<span class="nc" id="L95">	            return result;</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">	        if (!firstDay.before(lastDay)) {</span>
+<span class="fc" id="L95">	            return result;</span>
 	        }
 	        
 	        //Get the first recurrence taken care of
@@ -198,24 +198,24 @@ public class TimeTable {
 	     **/
 	    public LinkedList&lt;Appt&gt; deleteAppt(LinkedList&lt;Appt&gt; appts,Appt appt) {
 	    	//Do not do anything to appts equals to null 
-<span class="pc bpc" id="L201" title="1 of 4 branches missed.">	        if(appts==null||appt==null)</span>
+<span class="fc bfc" id="L201" title="All 4 branches covered.">	        if(appts==null||appt==null)</span>
 <span class="fc" id="L202">        		return null;</span>
 	    	//Do not do anything to invalid appointments
-<span class="pc bpc" id="L204" title="1 of 2 branches missed.">	        if (!appt.getValid()) {</span>
-<span class="nc" id="L205">	            return null;</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">	        if (!appt.getValid()) {</span>
+<span class="fc" id="L205">	            return null;</span>
 	        }
 
 	        //Remove the appointment from the list appts if applicable
 	        
-<span class="pc bpc" id="L210" title="1 of 2 branches missed.">	        for(int i=1;i&lt;appts.size()-1;i++){</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">	        for(int i=1;i&lt;appts.size()-1;i++){</span>
 <span class="fc" id="L211">	        	Appt tempAppt=appts.get(i);</span>
-<span class="pc bpc" id="L212" title="1 of 2 branches missed.">	        	if(tempAppt.equals(appt)){</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">	        	if(tempAppt.equals(appt)){</span>
 <span class="fc" id="L213">	        		appts.remove(i);</span>
 <span class="fc" id="L214">	        		return appts;</span>
 	        	}
 	        		
 	        }
-<span class="nc" id="L218">	        return null;</span>
+<span class="fc" id="L218">	        return null;</span>
 	    }
 	    
 	    public LinkedList&lt;Appt&gt; permute(LinkedList&lt;Appt&gt; appts, int[] pv){
@@ -226,8 +226,8 @@ public class TimeTable {
 	    	   appointments should be placed in the kth position.
 	    	*/
 <span class="fc" id="L228">	    	LinkedList&lt;Appt&gt; apptsUpdatedList=new LinkedList&lt;Appt&gt;(appts);   </span>
-<span class="pc bpc" id="L229" title="1 of 2 branches missed.">	    	if(pv.length != appts.size())</span>
-<span class="nc" id="L230">	    	    throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">	    	if(pv.length != appts.size())</span>
+<span class="fc" id="L230">	    	    throw new IllegalArgumentException();</span>
 
 <span class="fc" id="L232">	    	int nexti =  0;</span>
 <span class="fc bfc" id="L233" title="All 2 branches covered.">	    	for(int i = 0;i&lt;pv.length;i++){</span>
@@ -245,5 +245,8 @@ public class TimeTable {
 <span class="fc" id="L245">			 return getNextApptOccurrence(appt, day);</span>
 		 }
 
+		 public LinkedList&lt;GregorianCalendar&gt; testGetApptOccurences(Appt appt, GregorianCalendar firstday, GregorianCalendar lastday) {
+<span class="fc" id="L249">			 return getApptOccurences(appt, firstday, lastday);</span>
+		 }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.0.201801022044</span></div></body></html>

@@ -240,9 +240,12 @@ public class TimeTable {
 
 	        }
 
-		/* TESTING PURPOSES ONLY */
+		/* ~~~~~~~~~~~~~ TESTING PURPOSES ONLY: ALL FUNCTIONS BELOW ~~~~~~~~~~~~~ */
 		 public GregorianCalendar testGetNextApptOcc(Appt appt, GregorianCalendar day) {
 			 return getNextApptOccurrence(appt, day);
 		 }
 
+		 public LinkedList<GregorianCalendar> testGetApptOccurences(Appt appt, GregorianCalendar firstday, GregorianCalendar lastday) {
+			 return getApptOccurences(appt, firstday, lastday);
+		 }
 }

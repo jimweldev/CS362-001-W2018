@@ -61,10 +61,21 @@ public class TimeTableTest {
         //for (int i = 0; i < eventList.size(); i++)
           //  System.out.println(eventList.get(i).toString());
 
-        CalDay eventFromList = eventList.get(0);
+         CalDay eventFromList = eventList.get(0);
          assertTrue(eventFromList.getAppts().contains(unityGames));
          assertTrue(eventFromList.getAppts().contains(musicalEvent));
 
+         try {
+             timetable.getApptRange(appts, lastDay, firstDay);
+         } catch (DateOutOfRangeException x) {
+            assertTrue(x.getMessage().contains("Second date specified is not  before the first date specified."));
+         }
+
+         Appt invalidEvent = new Appt(10, 0,0,7,2018,
+                 "Musical","Musical Event");
+
+         appts.add(invalidEvent);
+         assertTrue(timetable.getApptRange(appts, firstDay, lastDay) instanceof LinkedList);
     }
 
     @Test
@@ -76,21 +87,33 @@ public class TimeTableTest {
                     "Unity Games", "Unity Sports Games");
         Appt musicalEvent = new Appt(10, 1,27,7,2018,
                     "Musical","Musical Event");
+        Appt invalidEvent = new Appt(10, 0,0,7,2018,
+                "Musical","Musical Event");
 
         //timetable.deleteAppt(appts, unityGames);
         assertEquals(null, timetable.deleteAppt(appts, unityGames));
 
         appts = new LinkedList<Appt>();
 
+        appts.add(musicalEvent);
+        appts.add(musicalEvent);
+        appts.add(musicalEvent);
+
+        assertEquals(null, timetable.deleteAppt(appts,unityGames));
+
         appts.add(unityGames);
-        appts.add(musicalEvent);
-        appts.add(musicalEvent);
-        appts.add(musicalEvent);
+
+        assertEquals(null, timetable.deleteAppt(appts, null));
+        assertEquals(null, null, null);
+        assertEquals(null, timetable.deleteAppt(appts, invalidEvent));
 
         LinkedList<Appt> temp = timetable.deleteAppt(appts, musicalEvent);
         assertEquals(3, temp.size());
         temp = timetable.deleteAppt(appts, musicalEvent);
         assertEquals(2,temp.size());
+
+
+
         //temp = timetable.deleteAppt(appts, musicalEvent);     // BUG: WILL NOT WORK WITH ONLY TWO IN LIST
         //assertEquals(1,temp.size());
     }
@@ -119,6 +142,18 @@ public class TimeTableTest {
         LinkedList<Appt> temp = timetable.permute(appts, order);
 
         //assertEquals("Service", temp.get(0).getTitle()); // ****BUG: Incorrect Order
+
+        int[] order2 = new int[4];
+        order2[0] = 2;
+        order2[1] = 1;
+        order2[2] = 3;
+        order2[3] = 0;
+
+        try {
+            temp = timetable.permute(appts, order2);
+        } catch (IllegalArgumentException x) {
+            assertTrue(x instanceof IllegalArgumentException);
+        }
 
 	 }
 
@@ -151,6 +186,19 @@ public class TimeTableTest {
         assertFalse(inc50west2.equals(newOcc));
     }
 
+    @Test
+    public void testGetApptOccurences() throws Throwable {
+        TimeTable timetable = new TimeTable();
+        GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
+        GregorianCalendar inc50west2 = new GregorianCalendar(2019, 7, 27);
+
+        Appt unityGames = new Appt(8, 1,27, 7,2018,
+                "Unity Games", "Unity Sports Games");
+
+        LinkedList<GregorianCalendar> output = new LinkedList<GregorianCalendar>();
+
+        assertTrue(output.size() == timetable.testGetApptOccurences(unityGames, inc50west2, inc50west).size());
+    }
 
 
 //add more unit tests as you needed
