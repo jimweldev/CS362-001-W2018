@@ -90,7 +90,7 @@ public class Appt implements  Comparable<Appt>{
         //Sets all instance variables 
     	this.startHour = startHour;
     	this.startMinute = startMinute; 
-    	this.startDay = startDay; 
+    	this.startDay = startDay;
     	this.startMonth = startMonth;
     	this.startYear = startYear; 
         setTitle(title);
@@ -115,7 +115,7 @@ public class Appt implements  Comparable<Appt>{
     	if(startHour<0 || startHour>23)
     		this.valid=false;
     	else
-        	if(startMinute<0 || startMinute>59)
+        	if(startMinute<0 || startMinute>58)
         		this.valid=false;
         	else
             	if(startDay<1 || startDay>NumDaysInMonth)
@@ -161,7 +161,7 @@ public class Appt implements  Comparable<Appt>{
 
     /** Sets title */
     public void setTitle(String title) {
-        if (title == null) 
+        if (title == null)
             this.title = "";
         else
             this.title = title;
