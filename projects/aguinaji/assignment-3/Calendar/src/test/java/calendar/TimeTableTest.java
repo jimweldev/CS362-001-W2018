@@ -208,6 +208,200 @@ public class TimeTableTest {
 		 assertTrue(output.size() == timetable.testGetApptOccurences(unityGames, inc50west2, inc50west).size());
    }
 
+   @Test
+    public void testGetApptRange2() throws Throwable {
+       GregorianCalendar firstDay = new GregorianCalendar(2018, 7,27);
+       GregorianCalendar lastDay = new GregorianCalendar(2018,7,29);
+
+
+
+       GregorianCalendar inc50west1 = new GregorianCalendar(2018, 7, 27);
+       GregorianCalendar inc50west2 = new GregorianCalendar(2018,7, 28);
+
+       CalDay calday = new CalDay(inc50west1);
+       CalDay calDay2 = new CalDay(inc50west2);
+
+
+
+       Appt unityGames = new Appt(8, 1,27, 7,2018,
+               "Unity Games", "Unity Sports Games");
+
+       calday.addAppt(unityGames);
+
+       Appt musicalEvent = new Appt(10, 1,28,7,2018,
+               "Musical","Musical Event");
+
+       calDay2.addAppt(musicalEvent);
+
+       LinkedList<Appt> appts = new LinkedList<Appt>();
+       appts.add(unityGames);
+       appts.add(musicalEvent);
+
+       TimeTable timetable = new TimeTable();
+
+       timetable.getApptRange(appts,firstDay,lastDay);
+
+       assertTrue(timetable.getApptRange(appts, firstDay, lastDay).get(0).getAppts().contains(unityGames));
+       assertTrue(timetable.getApptRange(appts, firstDay, lastDay).get(1).getAppts().contains(musicalEvent));
+
+   }
+
+   @Test
+    public void testGetApptOccurence2() throws Throwable {
+       GregorianCalendar firstDay = new GregorianCalendar(2018, 7,27);
+       GregorianCalendar lastDay = new GregorianCalendar(2018,7,28);
+
+
+
+       GregorianCalendar inc50west1 = new GregorianCalendar(2018, 7, 29);
+       GregorianCalendar inc50west2 = new GregorianCalendar(2018,7, 30);
+       GregorianCalendar inc50west3 = new GregorianCalendar(2020,10,2);
+
+       CalDay calday = new CalDay(inc50west1);
+       CalDay calDay2 = new CalDay(inc50west2);
+       CalDay calDay3 = new CalDay(inc50west3);
+
+       Appt unityGames = new Appt(8, 1,29, 7,2018,
+               "Unity Games", "Unity Sports Games");
+
+       Appt musicalEvent = new Appt(10, 1,30,7,2018,
+               "Musical","Musical Event");
+
+
+
+       calday.addAppt(unityGames);
+       calDay2.addAppt(musicalEvent);
+       calDay2.addAppt(unityGames);
+
+       TimeTable timeTable = new TimeTable();
+
+       assertEquals(0, timeTable.testGetApptOccurences(unityGames,firstDay,lastDay).size());
+
+   }
+    @Test
+    public void testGetApptOccurence3() throws Throwable {
+        GregorianCalendar firstDay = new GregorianCalendar(2018, 7,27);
+        GregorianCalendar lastDay = new GregorianCalendar(2019,7,31);
+
+
+
+        GregorianCalendar inc50west1 = new GregorianCalendar(2018, 7, 29);
+        GregorianCalendar inc50west2 = new GregorianCalendar(2018,7, 30);
+        GregorianCalendar inc50west3 = new GregorianCalendar(2020,10,2);
+
+        CalDay calday = new CalDay(inc50west1);
+        CalDay calDay2 = new CalDay(inc50west2);
+        CalDay calDay3 = new CalDay(inc50west3);
+
+        Appt unityGames = new Appt(8, 1,29, 7,2018,
+                "Unity Games", "Unity Sports Games");
+
+        Appt musicalEvent = new Appt(10, 1,30,7,2018,
+                "Musical","Musical Event");
+
+        int[] recurDays = new int[]{27};
+        unityGames.setRecurrence(recurDays, unityGames.RECUR_BY_MONTHLY, 2, unityGames.RECUR_NUMBER_FOREVER);
+
+        TimeTable timeTable = new TimeTable();
+
+        assertEquals(13, timeTable.testGetApptOccurences(unityGames,firstDay,lastDay).size());
+        assertEquals(1, timeTable.testGetApptOccurences(musicalEvent, firstDay, lastDay).size());
+    }
+
+    @Test
+    public void testGetNextApptOccurence2() throws Throwable {
+        GregorianCalendar firstDay = new GregorianCalendar(2018, 7,27);
+        GregorianCalendar lastDay = new GregorianCalendar(2018,8,1);
+        GregorianCalendar outDay = new GregorianCalendar(2018, 8, 8);
+        GregorianCalendar outDay2 = new GregorianCalendar(2018, 8, 8);
+        GregorianCalendar outDay3 = new GregorianCalendar(2019, 8, 7);
+
+        Appt unityGames = new Appt(8, 1,1, 8,2018,
+                "Unity Games", "Unity Sports Games");
+
+        int[] recurDays = new int[0];
+        unityGames.setRecurrence(recurDays, unityGames.RECUR_BY_WEEKLY, 1, unityGames.RECUR_NUMBER_FOREVER);
+
+        TimeTable timeTable = new TimeTable();
+
+        //GregorianCalendar outputDay = new GregorianCalendar(2018, 8, 8);
+        assertTrue(timeTable.testGetNextApptOcc(unityGames,lastDay).equals(outDay));
+
+        Appt musicalEvent = new Appt(10, 1,1,8,2018,
+                "Musical","Musical Event");
+
+        int[] recurDaysArr={7};
+        musicalEvent.setRecurrence(recurDaysArr, musicalEvent.RECUR_BY_WEEKLY, 1, musicalEvent.RECUR_NUMBER_FOREVER);
+
+        assertTrue(timeTable.testGetNextApptOcc(musicalEvent, lastDay).equals(outDay2));
+
+        Appt musicalEvent2 = new Appt(10, 1,4,8,2018,
+                "Musical","Musical Event");
+
+        int[] recurDaysArr2=new int[0];
+        musicalEvent2.setRecurrence(recurDaysArr2, 50, 1, musicalEvent2.RECUR_NUMBER_FOREVER);
+
+        assertNull(timeTable.testGetNextApptOcc(musicalEvent2, outDay3));
+
+        //System.out.println(timeTable.testGetNextApptOcc(musicalEvent2, lastDay));
+    }
+
+    @Test
+    public void testPermute2()  throws Throwable {
+        LinkedList<Appt> appts = new LinkedList<Appt>();
+
+        Appt unityGames = new Appt(8, 1,27, 7,2018,
+                "Unity Games", "Unity Sports Games");
+        Appt musicalEvent = new Appt(10, 1,27,7,2018,
+                "Musical","Musical Event");
+        Appt specialService = new Appt(4,5,27,7,2018,
+                "Service", "Special Service");
+
+        appts.add(unityGames);
+        appts.add(musicalEvent);
+        appts.add(specialService);
+
+        TimeTable timetable = new TimeTable();
+        int[] order = new int[3];
+        order[0] = 0;
+        order[1] = 1;
+        order[2] = 2;
+
+        assertEquals("Unity Games", timetable.permute(appts,order).get(0).getTitle());
+        assertEquals("Musical", timetable.permute(appts, order).get(1).getTitle());
+    }
+
+    @Test
+    public void testDeleteAppt2()   throws Throwable {
+
+        Appt unityGames = new Appt(8, 1,27, 7,2018,
+                "Unity Games", "Unity Sports Games");
+        Appt musicalEvent = new Appt(10, 1,27,7,2018,
+                "Musical","Musical Event");
+
+
+        //timetable.deleteAppt(appts, unityGames);
+        //assertEquals(null, timetable.deleteAppt(appts, unityGames));
+
+        LinkedList <Appt> appts = new LinkedList<Appt>();
+
+        appts.add(musicalEvent);
+        appts.add(musicalEvent);
+        appts.add(musicalEvent);
+        appts.add(unityGames);
+        appts.add(musicalEvent);
+
+        //System.out.println(appts.getLast().getTitle());
+
+        TimeTable timeTable = new TimeTable();
+
+        //assertEquals(null, timeTable.deleteAppt(appts, unityGames));
+
+        LinkedList <Appt> appts2 = timeTable.deleteAppt(appts,unityGames);
+
+        assertFalse(appts2.contains(unityGames));
+
+    }
 
 //add more unit tests as you needed
 }

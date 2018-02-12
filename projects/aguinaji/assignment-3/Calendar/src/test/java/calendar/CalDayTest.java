@@ -93,5 +93,48 @@ public class CalDayTest {
 		assertEquals(null, calday2.iterator());
 
 	}
+
+	@Test
+	public void testAddAppt2()	throws Throwable {
+		GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
+		CalDay calday = new CalDay(inc50west);
+
+		Appt unityGames = new Appt(8, 1,27, 7,2018,
+				"Unity Games", "Unity Sports Games");
+		calday.addAppt(unityGames);
+		Appt musicalEvent = new Appt(8, 1,27,7,2018,
+				"Musical","Musical Event");
+		calday.addAppt(musicalEvent);
+
+		assertEquals("Musical", calday.getAppts().get(1).getTitle());
+	}
+
+	@Test
+	public void testIterator2()	throws Throwable {
+		GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
+		CalDay calday = new CalDay(inc50west);
+
+		assertFalse(calday.iterator().hasNext());
+
+		CalDay calday2 = new CalDay();
+
+		assertEquals(null, calday2.iterator());
+	}
+
+	@Test
+	public void testGetSizeAppts() throws Throwable {
+		GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
+		CalDay calday = new CalDay(inc50west);
+
+		Appt unityGames = new Appt(8, 1,27, 7,2018,
+				"Unity Games", "Unity Sports Games");
+		calday.addAppt(unityGames);
+		Appt musicalEvent = new Appt(8, 1,27,7,2018,
+				"Musical","Musical Event");
+		calday.addAppt(musicalEvent);
+
+		assertEquals(2, calday.getSizeAppts());
+
+	}
 //add more unit tests as you needed
 }
