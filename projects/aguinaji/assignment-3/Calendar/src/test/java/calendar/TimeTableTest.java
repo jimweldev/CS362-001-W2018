@@ -403,5 +403,51 @@ public class TimeTableTest {
 
     }
 
+    @Test
+    public void testGetNextApptOccurence3() throws Throwable {
+        GregorianCalendar firstDay = new GregorianCalendar(2018, 7,27);
+        GregorianCalendar lastDay = new GregorianCalendar(2018,8,1);
+        GregorianCalendar outDay = new GregorianCalendar(2018, 8, 8);
+        GregorianCalendar outDay2 = new GregorianCalendar(2018, 8, 8);
+        GregorianCalendar outDay3 = new GregorianCalendar(2019, 8, 7);
+
+        Appt unityGames = new Appt(8, 1,1, 8,2018,
+                "Unity Games", "Unity Sports Games");
+
+        int[] recurDays = {7};
+        unityGames.setRecurrence(recurDays, unityGames.RECUR_BY_WEEKLY, 1, 1);
+
+        TimeTable timeTable = new TimeTable();
+
+        //assertNull(timeTable.testGetNextApptOcc(unityGames,lastDay));
+        //System.out.println(timeTable.testGetNextApptOcc(unityGames,lastDay).toString());
+    }
+
+    @Test
+    public void testGetApptOccurence4() throws Throwable {
+        GregorianCalendar firstDay = new GregorianCalendar(2018, 7,27);
+        GregorianCalendar lastDay = new GregorianCalendar(2019,7,28);
+
+        GregorianCalendar inc50west1 = new GregorianCalendar(2018, 7, 29);
+        GregorianCalendar inc50west2 = new GregorianCalendar(2018,7, 30);
+        GregorianCalendar inc50west3 = new GregorianCalendar(2020,10,2);
+
+        //CalDay calday = new CalDay(inc50west1);
+        //CalDay calDay2 = new CalDay(inc50west2);
+        //CalDay calDay3 = new CalDay(inc50west3);
+
+        Appt unityGames = new Appt(8, 1,29, 7,2018,
+                "Unity Games", "Unity Sports Games");
+
+        int[] recurDays = new int[0];
+        unityGames.setRecurrence(recurDays, unityGames.RECUR_BY_MONTHLY, 2, 5);
+
+
+        TimeTable timeTable = new TimeTable();
+
+        assertEquals(6, timeTable.testGetApptOccurences(unityGames, firstDay, lastDay).size());
+
+    }
+
 //add more unit tests as you needed
 }
