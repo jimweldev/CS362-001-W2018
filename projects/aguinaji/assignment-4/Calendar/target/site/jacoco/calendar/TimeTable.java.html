@@ -16,9 +16,9 @@ import java.util.*;
 public class TimeTable {
 
 	
-<span class="nc" id="L19">    public TimeTable() {</span>
+<span class="fc" id="L19">    public TimeTable() {</span>
 
-<span class="nc" id="L21">    }</span>
+<span class="fc" id="L21">    }</span>
 	
     
     /**
@@ -198,24 +198,24 @@ public class TimeTable {
 	     **/
 	    public LinkedList&lt;Appt&gt; deleteAppt(LinkedList&lt;Appt&gt; appts,Appt appt) {
 	    	//Do not do anything to appts equals to null 
-<span class="nc bnc" id="L201" title="All 4 branches missed.">	        if(appts==null||appt==null)</span>
-<span class="nc" id="L202">        		return null;</span>
+<span class="fc bfc" id="L201" title="All 4 branches covered.">	        if(appts==null||appt==null)</span>
+<span class="fc" id="L202">        		return null;</span>
 	    	//Do not do anything to invalid appointments
-<span class="nc bnc" id="L204" title="All 2 branches missed.">	        if (!appt.getValid()) {</span>
-<span class="nc" id="L205">	            return null;</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">	        if (!appt.getValid()) {</span>
+<span class="fc" id="L205">	            return null;</span>
 	        }
 
 	        //Remove the appointment from the list appts if applicable
 	        
-<span class="nc bnc" id="L210" title="All 2 branches missed.">	        for(int i=1;i&lt;appts.size()-1;i++){</span>
-<span class="nc" id="L211">	        	Appt tempAppt=appts.get(i);</span>
-<span class="nc bnc" id="L212" title="All 2 branches missed.">	        	if(tempAppt.equals(appt)){</span>
-<span class="nc" id="L213">	        		appts.remove(i);</span>
-<span class="nc" id="L214">	        		return appts;</span>
+<span class="fc bfc" id="L210" title="All 2 branches covered.">	        for(int i=1;i&lt;appts.size()-1;i++){</span>
+<span class="fc" id="L211">	        	Appt tempAppt=appts.get(i);</span>
+<span class="fc bfc" id="L212" title="All 2 branches covered.">	        	if(tempAppt.equals(appt)){</span>
+<span class="fc" id="L213">	        		appts.remove(i);</span>
+<span class="fc" id="L214">	        		return appts;</span>
 	        	}
 	        		
 	        }
-<span class="nc" id="L218">	        return null;</span>
+<span class="fc" id="L218">	        return null;</span>
 	    }
 	    
 	    public LinkedList&lt;Appt&gt; permute(LinkedList&lt;Appt&gt; appts, int[] pv){

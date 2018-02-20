@@ -53,7 +53,7 @@ public class ApptRandomTest {
    /**
      * Generate Random Tests that tests Appt Class.
      */
-	 @Test
+	 /***@Test
 	  public void radnomtest()  throws Throwable  {
 
 		 long startTime = Calendar.getInstance().getTimeInMillis();
@@ -110,7 +110,7 @@ public class ApptRandomTest {
 		}
 	 
 		 System.out.println("Done testing...");
-	 }
+	 }***/
 
 	 public static String RandomGetMethod(Random random){
 		String[] methodArray = new String[] {"startHour","startMinute","startDay","startMonth","startYear"};// The list of the of methods to be tested in the Appt class
@@ -120,7 +120,7 @@ public class ApptRandomTest {
 		return methodArray[n] ; // return the method name
 	}
 
-	 @Test
+	 /***@Test
 	 public void randomTest2()	throws Throwable {
 		 long startTime = Calendar.getInstance().getTimeInMillis();
 		 long elapsed = Calendar.getInstance().getTimeInMillis() - startTime;
@@ -192,7 +192,7 @@ public class ApptRandomTest {
 		 }
 
 		 System.out.println("Done testing...");
-	 }
+	 }***/
 
 	public static int[] RandomRecurDays(Random random){
 
@@ -219,7 +219,7 @@ public class ApptRandomTest {
 	}
 
 	 /* TESTING: private void setRecurDays(int[] recurDays) */
-	 @Test
+	/*** @Test
 	public void randomTest3() {
 		 long startTime = Calendar.getInstance().getTimeInMillis();
 		 long elapsed = Calendar.getInstance().getTimeInMillis() - startTime;
@@ -269,7 +269,7 @@ public class ApptRandomTest {
 		 }
 
 		 System.out.println("Done testing...");
-	 }
+	 }***/
 
 	
 }
