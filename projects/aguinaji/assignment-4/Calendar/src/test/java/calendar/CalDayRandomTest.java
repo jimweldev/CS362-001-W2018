@@ -33,7 +33,7 @@ public class CalDayRandomTest {
 	}
 
     /** TEST: public void addAppt(Appt appt) **/
-	/*** @Test
+	 @Test
 	  public void randomtest()  throws Throwable  {
 
 		 long startTime = Calendar.getInstance().getTimeInMillis();
@@ -70,7 +70,7 @@ public class CalDayRandomTest {
 
 
 				 }*/
-				/*** int newHour = startHour;
+				 int newHour = startHour;
 
 				for (int i = 0; i < NUM_TESTS; i++) {
 					 GregorianCalendar inc50west = new GregorianCalendar(2018, 7, 27);
@@ -131,7 +131,7 @@ public class CalDayRandomTest {
 		 }
 
 		 System.out.println("Done testing...");
-	 }***/
+	 }
 
 
 

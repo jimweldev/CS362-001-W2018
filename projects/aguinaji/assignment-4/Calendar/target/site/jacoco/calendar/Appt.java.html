@@ -118,7 +118,7 @@ public class Appt implements  Comparable&lt;Appt&gt;{
 <span class="fc bfc" id="L118" title="All 4 branches covered.">        	if(startMinute&lt;0 || startMinute&gt;59)</span>
 <span class="fc" id="L119">        		this.valid=false;</span>
         	else
-<span class="pc bpc" id="L121" title="1 of 4 branches missed.">            	if(startDay&lt;1 || startDay&gt;NumDaysInMonth)</span>
+<span class="fc bfc" id="L121" title="All 4 branches covered.">            	if(startDay&lt;1 || startDay&gt;NumDaysInMonth)</span>
 <span class="fc" id="L122">            		this.valid=false;</span>
             	else
 <span class="pc bpc" id="L124" title="2 of 4 branches missed.">                	if(startMonth&lt;1 || startMonth&gt;12)</span>
@@ -131,27 +131,27 @@ public class Appt implements  Comparable&lt;Appt&gt;{
 
     /** Sets startHour */
     public void setStartHour(int startHour) {
-<span class="nc" id="L134">    	this.startHour = startHour;</span>
-<span class="nc" id="L135">    	 isValid();</span>
-<span class="nc" id="L136">    }</span>
+<span class="fc" id="L134">    	this.startHour = startHour;</span>
+<span class="fc" id="L135">    	 isValid();</span>
+<span class="fc" id="L136">    }</span>
     
     /** Sets startHour */
     public void setStartMinute(int startMinute) {   	
-<span class="nc" id="L140">        this.startMinute = startMinute;</span>
-<span class="nc" id="L141">        isValid();</span>
-<span class="nc" id="L142">    }</span>
+<span class="fc" id="L140">        this.startMinute = startMinute;</span>
+<span class="fc" id="L141">        isValid();</span>
+<span class="fc" id="L142">    }</span>
 
     /** Sets startDay */
     public void setStartDay(int startDay) {
-<span class="nc" id="L146">        this.startDay = startDay;</span>
-<span class="nc" id="L147">        isValid();</span>
-<span class="nc" id="L148">    }</span>
+<span class="fc" id="L146">        this.startDay = startDay;</span>
+<span class="fc" id="L147">        isValid();</span>
+<span class="fc" id="L148">    }</span>
     
     /** Sets startMonth */
     public void setStartMonth(int startMonth) {
-<span class="nc" id="L152">        this.startMonth = startMonth;</span>
-<span class="nc" id="L153">        isValid();</span>
-<span class="nc" id="L154">    }</span>
+<span class="fc" id="L152">        this.startMonth = startMonth;</span>
+<span class="fc" id="L153">        isValid();</span>
+<span class="fc" id="L154">    }</span>
     
     /** Sets startYear */
     public void setStartYear(int startYear) {
@@ -178,7 +178,7 @@ public class Appt implements  Comparable&lt;Appt&gt;{
     
     /** Gets startHour */
     public int getStartHour() {
-<span class="nc" id="L181">        return startHour;</span>
+<span class="fc" id="L181">        return startHour;</span>
     }
     
     /** Gets startHour */
@@ -188,17 +188,17 @@ public class Appt implements  Comparable&lt;Appt&gt;{
     
     /** Gets startDay */
     public int getStartDay() {
-<span class="nc" id="L191">        return startDay;</span>
+<span class="fc" id="L191">        return startDay;</span>
     }
     
     /** Gets startMonth */
     public int getStartMonth() {
-<span class="nc" id="L196">        return startMonth;</span>
+<span class="fc" id="L196">        return startMonth;</span>
     }
     
     /** Gets startYear */
     public int getStartYear() {
-<span class="nc" id="L201">        return startYear;</span>
+<span class="fc" id="L201">        return startYear;</span>
     }
  
     /** Gets title */
@@ -224,8 +224,8 @@ public class Appt implements  Comparable&lt;Appt&gt;{
 <span class="fc" id="L224">        setRecurNumber(recurNumber);</span>
 <span class="fc" id="L225">    }</span>
     private void setRecurDays(int[] recurDays) {
-<span class="pc bpc" id="L227" title="1 of 2 branches missed.">        if (recurDays == null) {</span>
-<span class="nc" id="L228">            this.recurDays = new int[0];</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">        if (recurDays == null) {</span>
+<span class="fc" id="L228">            this.recurDays = new int[0];</span>
         }
         else {
 <span class="fc" id="L231">            this.recurDays = recurDays;</span>
@@ -246,22 +246,22 @@ public class Appt implements  Comparable&lt;Appt&gt;{
 <span class="fc" id="L246">    }</span>
     /** Gets recurNumber */
     public int getRecurNumber() {
-<span class="nc" id="L249">        return recurNumber;</span>
+<span class="fc" id="L249">        return recurNumber;</span>
     }
     /** Gets recurBy */
     public int getRecurBy() {
-<span class="nc" id="L253">        return recurBy;</span>
+<span class="fc" id="L253">        return recurBy;</span>
     }
     /** Gets recurDays */
     public int[] getRecurDays() {
-<span class="nc" id="L257">        return recurDays;</span>
+<span class="fc" id="L257">        return recurDays;</span>
     }    
     /**
      * Checks to see if an appointment recurrs or not
      * @return True if the appointment does occur more than once
      */
     public boolean isRecurring() {
-<span class="nc bnc" id="L264" title="All 2 branches missed.">        return getRecurNumber() != RECUR_NUMBER_NEVER;</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">        return getRecurNumber() != RECUR_NUMBER_NEVER;</span>
     }
     /** Gets recurIncrement */
     public int getRecurIncrement() {

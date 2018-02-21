@@ -1,6 +1,7 @@
 package calendar;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -24,7 +25,7 @@ public class TimeTableRandomTest {
     /**
      * Generate Random Tests that tests TimeTable Class.
      */
-	 @Test
+	@Test
 	  public void randomtest()  throws Throwable  {
 		 long startTime = Calendar.getInstance().getTimeInMillis();
 		 long elapsed = Calendar.getInstance().getTimeInMillis() - startTime;
@@ -102,7 +103,7 @@ public class TimeTableRandomTest {
 					}
 				}
 
-				/************************/
+
 
 				elapsed = (Calendar.getInstance().getTimeInMillis() - startTime);
 				if((iteration%10000)==0 && iteration!=0 )
@@ -115,7 +116,89 @@ public class TimeTableRandomTest {
 		 
 		 
 	 }
+	public static int RandomSelectRecur(Random random){
+		int[] RecurArray = new int[] {Appt.RECUR_BY_WEEKLY,Appt.RECUR_BY_MONTHLY,Appt.RECUR_BY_YEARLY};// The list of the of setting appointments to recur Weekly,Monthly, or Yearly
+
+		int n = random.nextInt(RecurArray.length);// get a random number between 0 (inclusive) and  RecurArray.length (exclusive)
+		return RecurArray[n] ; // return the value of the  appointments to recur
+	}
+
+	public static int RandomSelectRecurForEverNever(Random random){
+		int[] RecurArray = new int[] {Appt.RECUR_NUMBER_FOREVER,Appt.RECUR_NUMBER_NEVER};// The list of the of setting appointments to recur RECUR_NUMBER_FOREVER, or RECUR_NUMBER_NEVER
+
+		int n = random.nextInt(RecurArray.length);// get a random number between 0 (inclusive) and  RecurArray.length (exclusive)
+		return RecurArray[n] ; // return appointments to recur forever or Never recur
+	}
+
+	@Test
+	public void randomtest2()  throws Throwable  {
+		long startTime = Calendar.getInstance().getTimeInMillis();
+		long elapsed = Calendar.getInstance().getTimeInMillis() - startTime;
+
+		System.out.println("Start testing...");
+
+		try {
+			for (int iteration = 0; elapsed < TestTimeout; iteration++) {
+				long randomseed = System.currentTimeMillis(); //10
+				Random random = new Random(randomseed);
+
+				for(int z=0; z < NUM_TESTS; z++) {
+					int randDay = ValuesGenerator.getRandomIntBetween(random,1,30);
+					int randMonth = ValuesGenerator.getRandomIntBetween(random,1,11);
+					int randDay2 = ValuesGenerator.getRandomIntBetween(random,1,30);
+					int randMonth2 = ValuesGenerator.getRandomIntBetween(random,1,11);
+					GregorianCalendar firstDay = new GregorianCalendar(2018, randMonth,randDay);
+					GregorianCalendar lastDay = new GregorianCalendar(2018,randMonth2,randDay2);
+
+					LinkedList<Appt> appts = new LinkedList<Appt>();
+
+					for (int i = 0; i < ValuesGenerator.getRandomIntBetween(random, 0,20); i++) {
+						int startHour = ValuesGenerator.getRandomIntBetween(random, -1, 24);
+						int startMinute = ValuesGenerator.getRandomIntBetween(random, -1, 60);
+						int startDay = ValuesGenerator.getRandomIntBetween(random, 0, 31);
+						int startMonth = ValuesGenerator.getRandomIntBetween(random, 1, 11);
+						int startYear = 2018;
+						String title = "Random Event";
+						String description = "Random Event Generated";
+						//Construct a new Appointment object with the initial data
+						Appt appt = new Appt(startHour,
+								startMinute,
+								startDay,
+								startMonth,
+								startYear,
+								title,
+								description);
+
+						int randomRecur = ValuesGenerator.getRandomIntBetween(random, 0, 1);	// 0 = not recurring | 1 = recurring
+
+						if (randomRecur == 1) {
+							int sizeArray=ValuesGenerator.getRandomIntBetween(random, 0, 8);
+							int[] recurDays=ValuesGenerator.generateRandomArray(random, sizeArray);
+							int recur=TimeTableRandomTest.RandomSelectRecur(random);
+							int recurIncrement = ValuesGenerator.RandInt(random);
+							int recurNumber=TimeTableRandomTest.RandomSelectRecurForEverNever(random);
+							appt.setRecurrence(recurDays, recur, recurIncrement, recurNumber);
+						}
+
+						appts.add(appt);
+					}
+
+					TimeTable timeTable = new TimeTable();
+					try {
+						timeTable.getApptRange(appts, firstDay, lastDay);
+					} catch (DateOutOfRangeException e) { continue; }
+				}
+
+				elapsed = (Calendar.getInstance().getTimeInMillis() - startTime);
+				if((iteration%10000)==0 && iteration!=0 )
+					System.out.println("elapsed time: "+ elapsed + " of "+TestTimeout);
+			}
+
+		} catch (Exception e) { }
+
+		System.out.println("Done testing...");
 
 
+	}
 	
 }
