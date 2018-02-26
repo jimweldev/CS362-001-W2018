@@ -147,12 +147,15 @@ public class TimeTableRandomTest {
 					int randMonth = ValuesGenerator.getRandomIntBetween(random,1,11);
 					int randDay2 = ValuesGenerator.getRandomIntBetween(random,1,30);
 					int randMonth2 = ValuesGenerator.getRandomIntBetween(random,1,11);
+
+
 					GregorianCalendar firstDay = new GregorianCalendar(2018, randMonth,randDay);
 					GregorianCalendar lastDay = new GregorianCalendar(2018,randMonth2,randDay2);
 
 					LinkedList<Appt> appts = new LinkedList<Appt>();
 
-					for (int i = 0; i < ValuesGenerator.getRandomIntBetween(random, 0,20); i++) {
+					for (int i = 0; i < ValuesGenerator.getRandomIntBetween(random, 0,20); i++){
+
 						int startHour = ValuesGenerator.getRandomIntBetween(random, -1, 24);
 						int startMinute = ValuesGenerator.getRandomIntBetween(random, -1, 60);
 						int startDay = ValuesGenerator.getRandomIntBetween(random, 0, 31);

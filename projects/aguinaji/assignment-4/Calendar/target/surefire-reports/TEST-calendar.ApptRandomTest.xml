@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="calendar.ApptRandomTest" time="60.031" errors="0" skipped="0">
+<testsuite tests="2" failures="0" name="calendar.ApptRandomTest" time="60.026" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="9.0.1+11"/>
@@ -60,6 +60,6 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="calendar.ApptRandomTest" name="randomTest2" time="30.034"/>
+  <testcase classname="calendar.ApptRandomTest" name="randomTest2" time="30.029"/>
   <testcase classname="calendar.ApptRandomTest" name="randomTest3" time="29.997"/>
 </testsuite>
