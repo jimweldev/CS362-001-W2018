@@ -1,0 +1,3 @@
+1. The location of the first bug discovered was in the Appt Class, isvalid() method. The startMonth could never be 12 because it would return false as a valid appointment. In other words, the cause of this bug is the condition made that if startMonth is greater than 11, then the vaild flag will be set to false. The way I found this bug is shown in Figure 2 where I tested the boundary cases. 
+
+2. The location of the second bug was in the CalDay Class, addAppt(Appt appt) method. The bug affects the ordering of the appointments in a single CalDay object. This is because it does not check the first appointment in CalDay and skips over it. The bug was found using my test in Assignment 3 and Assignment 4. 
