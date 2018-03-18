@@ -305,11 +305,13 @@ public class UrlValidator implements Serializable {
         // Check the whole url address structure
         Matcher urlMatcher = URL_PATTERN.matcher(value);
         if (!urlMatcher.matches()) {
+            System.out.println("test1");
             return false;
         }
 
         String scheme = urlMatcher.group(PARSE_URL_SCHEME);
         if (!isValidScheme(scheme)) {
+            System.out.println("test2");
             return false;
         }
 
@@ -318,6 +320,7 @@ public class UrlValidator implements Serializable {
         if ("http".equals(scheme)) {// Special case - file: allows an empty authority
             if (authority != null) {
                 if (authority.contains(":")) { // but cannot allow trailing :
+                    System.out.println("test3");
                     return false;
                 }
             }
@@ -325,19 +328,23 @@ public class UrlValidator implements Serializable {
         } else { // not file:
             // Validate the authority
             if (!isValidAuthority(authority)) {
+                System.out.println("test4");
                 return false;
             }
         }
 
         if (!isValidPath(urlMatcher.group(PARSE_URL_PATH))) {
+            System.out.println("test5");
             return false;
         }
 
         if (!isValidQuery(urlMatcher.group(PARSE_URL_QUERY))) {
+            System.out.println("test6");
             return false;
         }
 
         if (!isValidFragment(urlMatcher.group(PARSE_URL_FRAGMENT))) {
+            System.out.println("test7");
             return false;
         }
 
@@ -355,15 +362,29 @@ public class UrlValidator implements Serializable {
      */
     protected boolean isValidScheme(String scheme) {
         if (scheme == null) {
+            System.out.println("scheme1");
             return false;
         }
 
         // TODO could be removed if external schemes were checked in the ctor before being stored
         if (!SCHEME_PATTERN.matcher(scheme).matches()) {
+            System.out.println("scheme2");
             return false;
         }
 
         if (isOff(ALLOW_ALL_SCHEMES) && !allowedSchemes.contains(scheme.toLowerCase(Locale.ENGLISH))) {
+            if(isOff(ALLOW_ALL_SCHEMES)){
+                System.out.println("cond1");
+            }
+            if(!allowedSchemes.contains((scheme.toLowerCase((Locale.ENGLISH))))){
+                System.out.println("cond2");
+            }
+            System.out.println("scheme3");
+
+            for(int i=0; i<allowedSchemes.size(); i++){
+                System.out.println(allowedSchemes.toArray()[i]);
+            }
+
             return false;
         }
 
